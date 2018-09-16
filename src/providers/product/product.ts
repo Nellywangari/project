@@ -70,7 +70,6 @@ export class ProductProvider {
         return {id, ...data};
       });
     });
-
   }
 
   getUserProducts(userId: string): AngularFirestoreCollection<Products> {

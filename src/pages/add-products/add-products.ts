@@ -5,9 +5,10 @@ import { Category } from './../../models/category';
 import { Observable } from 'rxjs';
 import { CategoriesProvider } from './../../providers/categories/categories';
 import { Component,NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController,ModalController,Modal } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController,ModalController,Modal, ViewController } from 'ionic-angular';
 import { Products } from '../../models/product.model';
 import * as firebase from 'firebase';
+import { Response } from '@angular/http';
 
 
 @IonicPage()
@@ -18,10 +19,13 @@ import * as firebase from 'firebase';
 export class AddProductsPage {
   product = {} as Products;
   imgUrl = "./../../assets/imgs/upload.png";
+  placeTitle="";
+  latitude=0;
+  longitude=0;
 
   categories: Observable<Category[]>;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public productService: ProductProvider, public navParams: NavParams,public categoryService: CategoriesProvider,public imgservice: ImghandlerProvider,public loadCtrl: LoadingController, public zone: NgZone) {
+  constructor(public navCtrl: NavController, public view: ViewController, public modalCtrl: ModalController, public productService: ProductProvider, public navParams: NavParams,public categoryService: CategoriesProvider,public imgservice: ImghandlerProvider,public loadCtrl: LoadingController, public zone: NgZone) {
   }
 
   ngOnInit() {
@@ -67,11 +71,11 @@ export class AddProductsPage {
     const imgUrl = this.product.imgUrl;
     const category_id = this.product.category_id;
     const user_id = firebase.auth().currentUser.uid;
-    const location = '';
-    const lat=1;
-    const lng=1;
+    const location = this.placeTitle;
+    const lat=this.latitude;
+    const lng=this.longitude;
 
-    console.log({name,brief_description,description,units,measurement,price,imgUrl,category_id,user_id});
+    console.log({name,brief_description,description,units,measurement,price,imgUrl,category_id,user_id,location,lat,lng});
 
     // category_id,
     // user_id,
@@ -91,7 +95,24 @@ export class AddProductsPage {
   }
 
   getLocation() {
-    const mapModal = this.modalCtrl.create(MapPage).present();
+    let mapModal = this.modalCtrl.create(MapPage);
+    mapModal.onDidDismiss(localeData => {
+      if(localeData != null){
+      this.placeTitle = localeData.name;
+      this.latitude = localeData.lat;
+      this.longitude = localeData.lng;
+      console.log(localeData);
+      } else {
+        this.placeTitle ="Undefined";
+        this.latitude = 0;
+        this.longitude = 0;
+      }
+    })
+
+    mapModal.present();
+  
   }
+    
+  
 
 }

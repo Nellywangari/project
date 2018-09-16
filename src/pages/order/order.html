@@ -1,0 +1,53 @@
+<!--
+  Generated template for the OrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            {{selectedProduct.name}}
+        </ion-card-header>
+        <div class="img">
+            <img src="{{ selectedProduct.imgUrl }}">
+        </div>
+
+        <ion-card-content>
+            <div class="description">
+                <p>{{ selectedProduct.description }}</p>
+
+            </div>
+
+            <div class="separate">
+                <ion-row class="product_details">
+                    <ion-col>
+                        <p class="quantity">Quantity:<span> {{selectedProduct.units}}</span></p>
+                    </ion-col>
+                    <ion-col class="price">
+                        <p class="price">Price: <span>kshs {{ selectedProduct.price }}</span></p>
+                    </ion-col>
+                </ion-row>
+            </div>
+
+            <ion-row>
+                <ion-col>
+                    <button ion-button full>Enquire</button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button full (click)="orderProduct()">Order</button>
+                </ion-col>
+            </ion-row>
+
+            <div class="separate">
+                <p>Located At: {{ selectedProduct.location }}</p>
+
+                <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                </agm-map>
+
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

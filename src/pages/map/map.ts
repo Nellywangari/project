@@ -27,7 +27,7 @@ export class MapPage {
   @ViewChild("search")
   public searchElementRef;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+  constructor(public navCtrl: NavController, private view: ViewController, public navParams: NavParams, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
 
     this.zoom = 4;
     this.latitude = 0;
@@ -81,7 +81,17 @@ export class MapPage {
   }
 
   seeCoords() {
-    console.log(this.latitude, this.longitude, this.placeTitle);
+    const localeData = {
+      name:this.placeTitle,
+      lat:this.latitude,
+      lng:this.longitude
+
+    
+    };
+
+    this.view.dismiss(localeData);
+
+    // console.log(localeData);
   }
 
   private setCurrentPosition() {
