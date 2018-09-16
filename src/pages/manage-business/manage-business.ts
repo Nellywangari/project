@@ -1,14 +1,19 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SuperTabs } from 'ionic2-super-tabs';
-
+/**
+ * Generated class for the ManageBusinessPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-manage-business',
+  templateUrl: 'manage-business.html',
 })
-export class HomePage {
+export class ManageBusinessPage {
 
 
   pages = [
@@ -27,8 +32,9 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    console.log('ionViewDidLoad ManageBusinessPage');
   }
+
 
 
   onTabSelected(ev: any) {
