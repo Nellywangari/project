@@ -12,7 +12,7 @@ export class HomePage {
 
 
   pages = [
-    { pageName:'ProductsPage', title:'Products',icon:'chatbubbles',id:"chatsTab"},
+    { pageName:'ChatsPage', title:'Chats',icon:'chatbubbles',id:"chatsTab"},
     { pageName:'OrdersPage', title:'Orders',icon:'book',id:"postsTab"},
     // { pageName:'DealsPage', title:'Deals',icon:'pricetags',id:"dealsTab"},
     // { pageName:'BuddiesPage', title:'Buddies',icon:'contacts',id:"buddiesTab"},

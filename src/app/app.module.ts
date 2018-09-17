@@ -26,6 +26,7 @@ import { ProductProvider } from '../providers/product/product';
 import { CategoriesProvider } from '../providers/categories/categories';
 import { AgmCoreModule } from '@agm/core';
 import { OrderProvider } from '../providers/order/order';
+import { ChatProvider } from '../providers/chat/chat';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { OrderProvider } from '../providers/order/order';
     RegisterProvider,
     ProductProvider,
     CategoriesProvider,
-    OrderProvider
+    OrderProvider,
+    ChatProvider
   ]
 })
 export class AppModule {}
